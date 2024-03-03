@@ -1,8 +1,6 @@
 # Fantasy-GPT
 Building a Language Model on series of Fiction novels
 
-Book list (cleaning progress tracked in the Unclean books folder)
-
 Character (word) counts: 19,747,225 (3,506,822)
 -	The mortal instruments:  4,306,340 (753,302)
     -	1 – city of bones: 777,231 (131,939)
