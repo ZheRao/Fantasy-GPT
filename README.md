@@ -1,7 +1,7 @@
 # Fantasy-GPT
 Building a Language Model on series of Fiction novels
 
-Character (word) counts: 19,747,225 (3,506,822)
+Character (word) counts: 19,383,996 (3,415,522)
 -	The mortal instruments:  4,306,340 (753,302)
     -	1 – city of bones: 777,231 (131,939)
     -	2 – city of ashes: 684,644 (121,546)
@@ -19,15 +19,13 @@ Character (word) counts: 19,747,225 (3,506,822)
     -	6 – tower of dawn: 1,091,205 (191,945)
     -	7 – kingdom of ash: 1,563,609 (272,861)
 
--	Lord of the Rings: 3,765,370 (697,586)
-    -	1 – Silmarillion: 711,370 (131,340)
-    -	2 – Hobbit: 515,693 (95,862)
-    -	3 – fellowship of the ring: 964,276 (177,594) 
-    -	4 – the two towers: 849,328 (156,715)
-    -	5 – the return of the king: 724,703 (136,065)
 
 -	The Dark Artifices: 3,919,930 (693,194)
     -	1 – lady midnight: 1,171,982 (206,657)
     -	2 – lord of shadows: 1,219,309 (215,295)
     -	3 – queen of air and darkness: 1,528,639 (271,242)
 
+-	Court of Thrones and Roses series: 3,402,141 (606,286)
+    -	1 - Thrones and roses: 719,955 (130,784)
+    -	3 – Wings and Ruin: 1,133,119 (200,805)
+    -	4 + 5: 1,549,067 (274,697)
