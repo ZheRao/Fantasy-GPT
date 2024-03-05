@@ -1,3 +1,5 @@
+import numpy as np
+import torch
 class HelperFunctionsClass:
 
     # train_test_split function identifies one book from full text - multiple books, then return train and validation set for that book
@@ -20,3 +22,14 @@ class HelperFunctionsClass:
         while text[n] not in ending:
             n += 1
         return n + 1
+    
+    # this function convert [1, 2, 3] into 1 2 3
+    def int_array_to_str(self, array):
+        array_str = list(map(str,array))
+        array_str = " ".join(array_str)
+        return array_str
+    
+    # this function reads converted-str-list file then return int list
+    def convert_str_file_to_int_array(self, file_path,convert_to_torch = True):
+        if convert_to_torch: return torch.tensor(np.loadtxt(file_path,dtype=int),dtype=torch.long)
+        else: return np.loadtxt(file_path,dtype=int)
