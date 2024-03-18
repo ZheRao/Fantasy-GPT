@@ -166,7 +166,7 @@ class train_test_loop_class:
             return avg_loss, avg_acc
                     
         
-    def train(self):
+    def train(self,early_stop=False):
         try:
             lowest_val_loss = np.load(os.path.join(self.model_folder,f"{self.model_name}_lowest_val_loss.npy")).item()
         except:
@@ -174,6 +174,7 @@ class train_test_loop_class:
         
         start = time.time()
         total_time = 0
+        count_decrease = 0 # count number of times validation loss has decreased
         # write the output to a file
         message_file_path = os.path.join(self.model_folder, f"{self.model_name} - Training Information.txt")
         if self.overwrite_message:
@@ -357,6 +358,16 @@ class train_test_loop_class:
                         m = f"Average per-Batch Validation Loss has decreased by {val_loss_perc_decrease:.2f}%\n"
                         if (self.print_result & self.print_full): print(m)
                         f.write("\n"+m)
+
+                        # if validation loss has decreased twice consecutively, terminate
+                        if early_stop:
+                            if val_loss_perc_decrease < 0:
+                                count_decrease += 1
+                                if count_decrease == 2:
+                                    break
+                            else:
+                                count_decrease = 0
+
                         
                         # if validation loss is the lowest, save the model as the best model weights
                         if validation_loss.cpu() < lowest_val_loss:

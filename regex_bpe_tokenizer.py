@@ -62,7 +62,7 @@ class regex_tokenizer:
         recovered_chunks = [[int(num) for num in block.strip().split(" ")] for block in text.split("\n")]
         return recovered_chunks
     
-    def _retrieve_training_history(self,title,vocab_size,tokenizer_folder_path=os.getcwd()):
+    def _retrieve_training_history(self,title,vocab_size,tokenizer_folder_path=os.getcwd(),is_train=True):
         """
             retrieve the dictionaries
         """
@@ -72,9 +72,11 @@ class regex_tokenizer:
                 vocab = pickle.load(f)
             with open(self.merges_path,"rb") as f:
                 merges = pickle.load(f)
-            with open(self.tokens_path,"r") as f:
-                chunks = f.read()
-            token_chunks = self._recover_chunks(chunks)
+            if is_train:
+                with open(self.tokens_path,"r") as f:
+                    chunks = f.read()
+                token_chunks = self._recover_chunks(chunks)
+            else: token_chunks = None
         except:
             m = f"Dictionary files do not exit, tokenizer requires training with {title} dataset. \nOr provided with inconsistent vocab_size, use os.listdir to inspect dictionary files."
             m_more = " Or past_tokens cannot be retreived, if this is the case, encode text first"
@@ -239,7 +241,7 @@ class ApplyTokenizer(regex_tokenizer):
     def __init__(self, title, vocab_size, tokenizer_folder_path, special_token_list = None):
         super(ApplyTokenizer,self).__init__()
         self.title = title
-        self.vocab, self.merge_history, _ = self._retrieve_training_history(title=title,vocab_size=vocab_size,tokenizer_folder_path=tokenizer_folder_path)
+        self.vocab, self.merge_history, _ = self._retrieve_training_history(title=title,vocab_size=vocab_size,tokenizer_folder_path=tokenizer_folder_path,is_train=False)
         self._read_update_special_tokens(special_token_list,tokenizer_folder_path,"infer")
         self._reconcile_special_token()
 
